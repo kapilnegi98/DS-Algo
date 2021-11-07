@@ -14,8 +14,11 @@ public class WordBreak {
 		boolean dp[] = new boolean[s.length()];
         for(int i = 0;i < dp.length;i++) {
         	for(int j = i;j >= 0;j--) {
-        		s.substring(j,i+1);
+        		if(set.contains(s.substring(j,i+1)) && (j == 0 || dp[j-1])) {
+        			dp[i] = true;
+        		}
         	}
         }
+        return dp[dp.length - 1];
     }
 }
